@@ -2,10 +2,13 @@
 var express    = require('express'); 		// call express
 var app        = express(); 				// define our app using express
 var bodyParser = require('body-parser');
-var mongo	   = require('./config.js');
+var config	   = require('./config.js');
+var mongoose   = require('mongoose');
 app.use(bodyParser());
 
 var port = process.env.PORT || 8080; 		// set our port
+
+mongoose.connect(config.mongoURL);
 
 //add a router
 var router = express.Router(); 				// get an instance of the express Router
