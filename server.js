@@ -2,6 +2,7 @@
 var express    = require('express'); 		// call express
 var app        = express(); 				// define our app using express
 var bodyParser = require('body-parser');
+var mongo	   = require('./config.js');
 app.use(bodyParser());
 
 var port = process.env.PORT || 8080; 		// set our port
@@ -18,4 +19,4 @@ app.use('/api', router);
 
 // Start the server
 app.listen(port);
-console.log('Running on port:  ' + port);
+console.log('Running on port: ' + port);
