@@ -9,7 +9,7 @@ app.use(bodyParser());
 
 //add some schemas!
 var Estab     = require('./models/estab');
-var Song     = require('./models/song');
+var Request     = require('./models/request');
 
 var port = process.env.PORT || 8080;
 
@@ -53,6 +53,7 @@ router.route('/estab/:pin')
 			res.json(estab);
 		});
 	});
+
 
 app.use('/api', router);
 
