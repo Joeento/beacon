@@ -1,9 +1,9 @@
 var mongoose     = require('mongoose');
 var Schema       = mongoose.Schema;
 
-var EstabSchema   = new Schema({
-	songID: Integer,
-	lat: Double,
+var SongSchema   = new Schema({
+	songID: Number,
+	lat: Number,
 });
 
-module.exports = mongoose.model('Estab', EstabSchema);
+module.exports = mongoose.model('Song', SongSchema);

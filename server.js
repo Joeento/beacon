@@ -4,19 +4,46 @@ var app        = express(); 				// define our app using express
 var bodyParser = require('body-parser');
 var config	   = require('./config.js');
 var mongoose   = require('mongoose');
+
 app.use(bodyParser());
 
-var port = process.env.PORT || 8080; 		// set our port
+//add some schemas!
+var Estab     = require('./models/estab');
+var Song     = require('./models/song');
+
+var port = process.env.PORT || 8080;
 
 mongoose.connect(config.mongoURL);
 
 //add a router
-var router = express.Router(); 				// get an instance of the express Router
+var router = express.Router();
 
 //Routes accessed through /api only
 router.get('/', function(req, res) {
-	res.json({ message: 'hooray! welcome to our api!' });	
+	res.json({ message: 'hooray! welcome to our api!' });
 });
+
+router.route('/estab')
+	.post(function(req, res) {
+		var estab = new Estab(); 
+		estab.name = req.body.name;
+		estab.pin = req.body.pin;  
+		
+		estab.save(function(err) {
+			if (err) {
+				res.send(err);
+			}
+			res.json({ status: 'Success', pin: estab.pin });
+		});
+		
+	}).get(function(req, res) {
+		Estab.find(function(err, estab) {
+			if (err)
+				res.send(err);
+
+			res.json(estab);
+		});
+	});
 
 app.use('/api', router);
 

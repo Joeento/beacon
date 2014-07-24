@@ -3,9 +3,9 @@ var Schema       = mongoose.Schema;
 
 var EstabSchema   = new Schema({
 	name: String,
-	pin: Integer,
-	lat: Double,
-	lon: Double
+	pin: Number,
+	lat: Number,
+	lon: Number
 });
 
 module.exports = mongoose.model('Estab', EstabSchema);
