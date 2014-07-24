@@ -28,7 +28,7 @@ router.route('/estab')
 		var estab = new Estab(); 
 		estab.name = req.body.name;
 		estab.pin = req.body.pin;  
-		
+
 		estab.save(function(err) {
 			if (err) {
 				res.send(err);
@@ -41,6 +41,15 @@ router.route('/estab')
 			if (err)
 				res.send(err);
 
+			res.json(estab);
+		});
+	});
+
+router.route('/estab/:pin')
+	.get(function(req, res) {
+		Estab.find({pin: req.params.pin}, function(err, estab) {
+			if (err)
+				res.send(err);
 			res.json(estab);
 		});
 	});
