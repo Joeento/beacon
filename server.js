@@ -9,7 +9,6 @@ app.use(bodyParser());
 
 //add some schemas!
 var Estab     = require('./models/estab');
-var Request     = require('./models/request');
 
 var port = process.env.PORT || 8080;
 
@@ -18,16 +17,13 @@ mongoose.connect(config.mongoURL);
 //add a router
 var router = express.Router();
 
-//Routes accessed through /api only
-router.get('/', function(req, res) {
-	res.json({ message: 'hooray! welcome to our api!' });
-});
 
 router.route('/estab')
-	.post(function(req, res) {
+	.put(function(req, res) {
 		var estab = new Estab(); 
 		estab.name = req.body.name;
-		estab.pin = req.body.pin;  
+		estab.pin = req.body.pin;
+		estab.requests = [];
 
 		estab.save(function(err) {
 			if (err) {
