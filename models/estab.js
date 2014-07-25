@@ -6,7 +6,7 @@ var EstabSchema   = new Schema({
 	pin: Number,
 	lat: Number,
 	lon: Number,
-	requests: [{songId: String, votes: Number}]
+	requests: [{songId: String, count: Number}]
 });
 
 module.exports = mongoose.model('Estab', EstabSchema);
