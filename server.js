@@ -18,7 +18,7 @@ mongoose.connect(config.mongoURL);
 var router = express.Router();
 
 
-router.route('/estab')
+router.route('/estabs')
 	.put(function(req, res) {
 		var estab = new Estab(); 
 		estab.name = req.body.name;
