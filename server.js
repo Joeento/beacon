@@ -6,6 +6,7 @@ var config	   = require('./config.js');
 var mongoose   = require('mongoose');
 
 app.use(bodyParser());
+app.use(express.static(__dirname + '/public'));
 
 //add some schemas!
 var Estab     = require('./models/estab');
@@ -66,7 +67,12 @@ router.route('/request/:pin/:song_id')
 	});
 
 
+
 app.use('/api', router);
+
+app.get('*', function(req, res) {
+			res.sendfile('./public/index.html'); // load our public/index.html file
+		});
 
 // Start the server
 app.listen(port);
