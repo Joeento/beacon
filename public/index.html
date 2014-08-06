@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en" ng-app="beaconApp">
+<head>
+	<meta charset="utf-8">
+	<title>Beacon(for Spotify)</title>
+	<link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.css">
+	<script src="libs/angular/angular.js"></script>
+	<script src="libs/angular-resource/angular-resource.js"></script>
+	<script src="js/controllers.js"></script>
+	<script src="js/services.js"></script>
+	<script src="js/app.js"></script>
+</head>
+<body ng-controller="SongSearchCtrl">
+	<input type="text" ng-model="query" ng-change="getSongList()" />
+	
+	<ul>
+		<li ng-repeat="song in songs.tracks | limitTo:5">
+			{{song.name}} - {{song.artists[0].name}}
+		</li>
+	</ul>
+
+</body>
+</html>
