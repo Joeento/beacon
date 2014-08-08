@@ -1,0 +1,7 @@
+<input type="text" ng-model="query" ng-change="getSongList()" />
+	
+<ul>
+	<li ng-repeat="song in songs.tracks | limitTo:5">
+		{{song.name}} - {{song.artists[0].name}}
+	</li>
+</ul>
