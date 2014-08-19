@@ -9,7 +9,7 @@ beaconApp.config(['$routeProvider',
       }).
       when('/', {
         templateUrl: 'views/home.html',
-        controller: ''
+        controller: 'SetBarCtrl'
       }).
       otherwise({
         redirectTo: '/'
