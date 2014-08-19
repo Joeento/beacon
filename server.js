@@ -47,7 +47,7 @@ router.route('/estab/:pin')
 		Estab.find({pin: req.params.pin}, function(err, estab) {
 			if (err)
 				res.send(err);
-			res.json(estab);
+			res.json(estab[0]);
 		});
 	});
 
