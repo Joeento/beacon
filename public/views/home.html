@@ -1,2 +1,4 @@
-Hi!
-<a href="#/search">Click here to search!</a>
+<input ng-model="pin" name="pin" ng-change="getBarByPin()"/>
+<button ng-disabled="pinValid" type="submit" ng-click="setBar()" class="">Go!</button>
+<br />
+<span>{{status}}</span>
