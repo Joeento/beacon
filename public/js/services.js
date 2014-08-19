@@ -6,3 +6,9 @@ beaconServices.factory('Song', ['$resource',
       query: {method:'GET', params:{q:'foo'}}
     });
   }]);
+beaconServices.factory('Estab', ['$resource',
+  function($resource){
+    return $resource('/api/estab/:pin', {}, {
+      query: {method:'GET'}
+    });
+  }]);
