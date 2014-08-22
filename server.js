@@ -53,16 +53,11 @@ router.route('/estab/:pin')
 
 router.route('/estab/:pin/request')
 	.post(function(req, res) {
-		Estab.find({pin: req.params.pin}, function(err, estab) {
+		Estab.findOneAndUpdate({pin: req.params.pin}, {$push: {requests: {songId: req.body.song_id, count: 1}}}, {}, 
+		function(err, mod) {
 			if (err)
 				res.send(err);
-
-			Estab.update({pin: estab[0].pin}, {$push: { requests: {songId: req.body.song_id, count: 1}}},
-				function(err2, val){
-					if (err2)
-						res.send(err2);
-			});
-			res.json(estab);
+			res.json(mod);
 		});
 	});
 
