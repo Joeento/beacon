@@ -5,10 +5,14 @@ beaconControllers.controller('SongSearchCtrl', ['$scope', '$rootScope', 'Song', 
 	
 	$scope.getSongList = function() {
 		if ($scope.query.length > 3) {
-			Song.query({q:$scope.query}, function(song) {
-				$scope.songs = song;
+			Song.query({q:$scope.query}, function(songs) {
+				$scope.songs = songs;
 			});
 		}
+	}
+	$scope.request = function(href) {
+		var songId = href.replace("spotify:track:","");
+		console.log(songId)
 	}
 }]);
 

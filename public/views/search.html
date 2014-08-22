@@ -2,6 +2,6 @@
 	
 <ul>
 	<li ng-repeat="song in songs.tracks | limitTo:5">
-		{{song.name}} - {{song.artists[0].name}}
+		<a ng-click="request(song.href)">{{song.name}} - {{song.artists[0].name}}</a>
 	</li>
 </ul>
