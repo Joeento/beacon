@@ -51,13 +51,13 @@ router.route('/estab/:pin')
 		});
 	});
 
-router.route('/request/:pin/:song_id')
+router.route('/estab/:pin/request')
 	.post(function(req, res) {
 		Estab.find({pin: req.params.pin}, function(err, estab) {
 			if (err)
 				res.send(err);
 
-			Estab.update({pin: estab[0].pin}, {$push: { requests: {songId: req.params.song_id, count: 1}}},
+			Estab.update({pin: estab[0].pin}, {$push: { requests: {songId: req.body.song_id, count: 1}}},
 				function(err2, val){
 					if (err2)
 						res.send(err2);
