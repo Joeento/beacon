@@ -9,6 +9,7 @@ beaconServices.factory('Song', ['$resource',
 beaconServices.factory('Estab', ['$resource',
   function($resource){
     return $resource('/api/estab/:pin', {}, {
-      query: {method:'GET'}
+      query: {method:'GET'},
+      request: {method:'POST', url: '/api/estab/:pin/request', params: {pin: '@pin'}},
     });
   }]);

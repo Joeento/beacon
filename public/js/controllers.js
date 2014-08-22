@@ -1,7 +1,7 @@
 var beaconControllers = angular.module('beaconControllers', []);
 
 
-beaconControllers.controller('SongSearchCtrl', ['$scope', '$rootScope', 'Song', function($scope, $rootScope, Song) {
+beaconControllers.controller('SongSearchCtrl', ['$scope', '$rootScope', 'Song', 'Estab', function($scope, $rootScope, Song, Estab) {
 	
 	$scope.getSongList = function() {
 		if ($scope.query.length > 3) {
@@ -12,7 +12,12 @@ beaconControllers.controller('SongSearchCtrl', ['$scope', '$rootScope', 'Song', 
 	}
 	$scope.request = function(href) {
 		var songId = href.replace("spotify:track:","");
-		console.log(songId)
+		Estab.request({pin: $rootScope.estab.pin, song_id: songId}, function(data) {
+			console.log(data);
+			alert("done!");
+			
+		})
+		
 	}
 }]);
 
