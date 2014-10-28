@@ -12,7 +12,8 @@ beaconControllers.controller('SongSearchCtrl', ['$scope', '$cookies', '$location
 	$scope.request = function(href) {
 		var songId = href.replace("spotify:track:","");
 		Estab.request({pin: $cookies.estab.pin, song_id: songId}, function(data) {
-			
+			$location.path('/queue');
+			$location.replace();
 			
 		})
 		
@@ -54,3 +55,9 @@ beaconControllers.controller('SetBarCtrl', ['$scope', '$cookies', '$location', '
 	}
 }]);
 
+beaconControllers.controller('QueueCtrl', ['$scope', '$cookies', 'Estab', function($scope, $cookies, Estab) {
+	Estab.query({pin:$cookies.estab.pin}, function(estab) {
+
+		$scope.estab = estab;
+	});
+}]);
