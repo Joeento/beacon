@@ -1,8 +1,7 @@
 var beaconControllers = angular.module('beaconControllers', []);
 
 
-beaconControllers.controller('SongSearchCtrl', ['$scope', '$rootScope', 'Song', 'Estab', function($scope, $rootScope, Song, Estab) {
-	
+beaconControllers.controller('SongSearchCtrl', ['$scope', '$cookies', '$location', 'Song', 'Estab', function($scope, $cookies, $location, Song, Estab) {
 	$scope.getSongList = function() {
 		if ($scope.query.length > 3) {
 			Song.query({q:$scope.query}, function(songs) {
@@ -12,16 +11,15 @@ beaconControllers.controller('SongSearchCtrl', ['$scope', '$rootScope', 'Song', 
 	}
 	$scope.request = function(href) {
 		var songId = href.replace("spotify:track:","");
-		Estab.request({pin: $rootScope.estab.pin, song_id: songId}, function(data) {
-			console.log(data);
-			alert("done!");
+		Estab.request({pin: $cookies.estab.pin, song_id: songId}, function(data) {
+			
 			
 		})
 		
 	}
 }]);
 
-beaconControllers.controller('SetBarCtrl', ['$scope', '$rootScope', '$location', 'Estab', function($scope, $rootScope, $location, Estab) {
+beaconControllers.controller('SetBarCtrl', ['$scope', '$cookies', '$location', 'Estab', function($scope, $cookies, $location, Estab) {
 	$scope.status = 'Enter your bar\'s PIN!';
 	$scope.pinValid = true;
 	var estab;
@@ -43,10 +41,16 @@ beaconControllers.controller('SetBarCtrl', ['$scope', '$rootScope', '$location',
 		}
 	}
 	$scope.setBar = function() {
-		$rootScope.estab = estab;
+		if (!$cookies.estab) {
+			$cookies.estab
+		}
+		$cookies.estab.pin = estab.pin;
+		$cookies.estab.name = estab.name;
+		console.log("PIN:" + estab)
 		$location.path('/search');
 		$location.replace();
 		
 
 	}
 }]);
+
